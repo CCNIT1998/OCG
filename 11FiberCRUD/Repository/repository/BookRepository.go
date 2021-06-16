@@ -43,13 +43,13 @@ func (r *BookRepo) InitData(connection string) {
 		},
 		Rating: 0})
 
-	r.CreateNewBook(&model.Book{
-		Title: "100 năm cô đơn",
-		Authors: []model.Author{
-			{FullName: "Gabriel Garcia Marquez", Country: "Columbia"},
-			{FullName: "Ivan", Country: "Russia"},
-		},
-		Rating: 0})
+	// r.CreateNewBook(&model.Book{
+	// 	Title: "100 năm cô đơn",
+	// 	Authors: []model.Author{
+	// 		{FullName: "Gabriel Garcia Marquez", Country: "Columbia"},
+	// 		{FullName: "Ivan", Country: "Russia"},
+	// 	},
+	// 	Rating: 0})
 }
 
 func (r *BookRepo) GetAllBooks() map[int64]*model.Book {

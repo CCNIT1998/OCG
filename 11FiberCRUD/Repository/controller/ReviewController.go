@@ -35,6 +35,7 @@ func DeleteReviewById(c *fiber.Ctx) error {
 	if err != nil {
 		return c.Status(404).SendString(err.Error())
 	} else {
+		AverageRating(c)
 		return c.SendString("delete successfully")
 	}
 }
@@ -60,6 +61,9 @@ func CreateReview(c *fiber.Ctx) error {
 	}
 
 	reviewId := repo.Reviews.CreateNewReview(review)
+
+	AverageRating(c)
+
 	return c.SendString(fmt.Sprintf("New book is created successfully with id = %d", reviewId))
 
 }
@@ -81,7 +85,7 @@ func UpdateReview(c *fiber.Ctx) error {
 	if err != nil {
 		return c.Status(404).SendString(err.Error())
 	}
-
+	AverageRating(c)
 	return c.SendString(fmt.Sprintf("Book with id = %d is successfully updated", updatedReview.Id))
 
 }
@@ -100,6 +104,7 @@ func UpsertReview(c *fiber.Ctx) error {
 	}
 
 	id := repo.Reviews.Upsert(review)
+	AverageRating(c)
 	return c.SendString(fmt.Sprintf("Book with id = %d is successfully upserted", id))
 }
 

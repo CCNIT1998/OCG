@@ -36,29 +36,29 @@ func (r *ReviewRepo) CreateNewReview(review *model.Review) int64 {
 func (r *ReviewRepo) InitData(connection string) {
 	fmt.Println("Connect to ", connection)
 
-	r.CreateNewReview(&model.Review{
-		BookId:  1,
-		Comment: "good",
-		Rating:  4,
-	})
+	// r.CreateNewReview(&model.Review{
+	// 	BookId:  1,
+	// 	Comment: "good",
+	// 	Rating:  4,
+	// })
 
-	r.CreateNewReview(&model.Review{
-		BookId:  2,
-		Comment: "bad",
-		Rating:  2,
-	})
+	// r.CreateNewReview(&model.Review{
+	// 	BookId:  2,
+	// 	Comment: "bad",
+	// 	Rating:  1,
+	// })
 
-	r.CreateNewReview(&model.Review{
-		BookId:  2,
-		Comment: "bad",
-		Rating:  2,
-	})
+	// r.CreateNewReview(&model.Review{
+	// 	BookId:  2,
+	// 	Comment: "bad",
+	// 	Rating:  2,
+	// })
 
-	r.CreateNewReview(&model.Review{
-		BookId:  1,
-		Comment: "good",
-		Rating:  4,
-	})
+	// r.CreateNewReview(&model.Review{
+	// 	BookId:  1,
+	// 	Comment: "good",
+	// 	Rating:  5,
+	// })
 }
 
 func (r *ReviewRepo) GetAllReviews() map[int64]*model.Review {

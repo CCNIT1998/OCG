@@ -94,27 +94,27 @@ func main() {
 	fmt.Println("_________ 2.6 Ứng với một nghề, hãy tính mức lương trung bình	_________")
 	averageSalaryByJob := AverageSalaryByJob(people)
 	fmt.Println(averageSalaryByJob)
-	for key, value := range averageSalaryByJob {
-		fmt.Printf("%s : %d", key, value)
+	// for key, value := range averageSalaryByJob {
+	// 	fmt.Printf("%s : %d", key, value)
+	// 	fmt.Println("")
+	// }
+
+	// 2.7 Năm thành phố có mức lương trung bình cao nhất
+	fmt.Println("_________ 2.7 Năm thành phố có mức lương trung bình cao nhất _________")
+	fiveCitiesHasTopAverageSalary := FiveCitiesHasTopAverageSalary(people)
+	fmt.Println(fiveCitiesHasTopAverageSalary)
+	// for _, value := range fiveCitiesHasTopAverageSalary {
+	// 	fmt.Printf("%s : %d\n", value.Name, value.Number)
+	// }
+
+	// 2.8 Năm thành phố có mức lương trung bình của developer cao nhất
+	fmt.Println("_________ 2.8 Năm thành phố có mức lương trung bình của developer cao nhất _________")
+	fiveCitiesHasTopSalaryForDeveloper := FiveCitiesHasTopSalaryForDeveloper(people)
+	fmt.Println(fiveCitiesHasTopSalaryForDeveloper)
+	for _, value := range fiveCitiesHasTopSalaryForDeveloper {
+		fmt.Printf("%s : %d", value.Name, value.Number)
 		fmt.Println("")
 	}
-
-	// 	// 2.7 Năm thành phố có mức lương trung bình cao nhất
-	// 	fmt.Println("_________ 2.7 Năm thành phố có mức lương trung bình cao nhất _________")
-	// 	FCHTAS := FiveCitiesHasTopAverageSalary(people)
-	// 	fmt.Println(FCHTAS)
-	// 	for _, value := range FCHTAS {
-	// 		fmt.Printf("%s : %d\n", value.Name, value.Number)
-	// 	}
-
-	// 	// 2.8 Năm thành phố có mức lương trung bình của developer cao nhất
-	// 	fmt.Println("_________ 2.8 Năm thành phố có mức lương trung bình của developer cao nhất _________")
-	// 	FCHTSFD := FiveCitiesHasTopSalaryForDeveloper(people)
-	// 	fmt.Println(FCHTSFD)
-	// 	for _, value := range FCHTSFD {
-	// 		fmt.Printf("%s : %d", value.Name, value.Number)
-	// 		fmt.Println("")
-	// 	}
 
 	// 	// 2.9 Tuổi trung bình từng nghề nghiệp
 	// 	fmt.Println("_________ 2.9 Tuổi trung bình từng nghề nghiệp _________")
