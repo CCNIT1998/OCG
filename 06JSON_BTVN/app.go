@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
+	"bufio"
 )
 
 /* https://stackoverflow.com/questions/45303326/how-to-parse-non-standard-time-format-from-json
@@ -22,6 +23,7 @@ type Person struct {
 	City     string `json:"city"`
 	Salary   int    `json:"salary"`
 	Birthday string `json:"birthdate"`
+	Gender	string  `json:"gender"`
 }
 
 func (p *Person) String() string {
@@ -31,7 +33,7 @@ func (p *Person) String() string {
 
 func main() {
 	// Open our jsonFile
-	jsonFile, err := os.Open("personsmall.json")
+	jsonFile, err := os.Open("person.json")
 	// if we os.Open returns an error then handle it
 	if err != nil {
 		fmt.Println(err)
@@ -82,13 +84,13 @@ func main() {
 	fmt.Println("_________ 2.5 Trong mỗi thành phố, hãy tìm ra nghề nào được làm nhiều nhất	_________")
 	topJobInEachCity := TopJobByNumberInEachCity(people)
 	fmt.Println(topJobInEachCity)
-	// for key, value := range topJobInEachCity {
-	// 	fmt.Println("========> City", key)
-	// 	for k, v := range value {
-	// 		fmt.Printf("%s : %d", k, v)
-	// 		fmt.Println("")
-	// 	}
-	// }
+	for key, value := range topJobInEachCity {
+		fmt.Println("========> City", key)
+		for k, v := range value {
+			fmt.Printf("%s : %d", k, v)
+			fmt.Println("")
+		}
+	}
 
 	// 2.6 Ứng với một nghề, hãy tính mức lương trung bình
 	fmt.Println("_________ 2.6 Ứng với một nghề, hãy tính mức lương trung bình	_________")
@@ -116,21 +118,35 @@ func main() {
 		fmt.Println("")
 	}
 
-	// 	// 2.9 Tuổi trung bình từng nghề nghiệp
-	// 	fmt.Println("_________ 2.9 Tuổi trung bình từng nghề nghiệp _________")
-	// 	AAPJ := AverageAgePerJob(people)
-	// 	fmt.Println(AAPJ)
-	// 	for key, value := range AAPJ {
-	// 		fmt.Printf("%s : %.2f", key, value)
-	// 		fmt.Println("")
-	// 	}
+	// 2.9 Tuổi trung bình từng nghề nghiệp
+	fmt.Println("_________ 2.9 Tuổi trung bình từng nghề nghiệp _________")
+	averageAgePerJob := AverageAgePerJob(people)
+	// fmt.Println(averageAgePerJob)
+	for key, value := range averageAgePerJob {
+		fmt.Printf("%s : %.2f", key, value)
+		fmt.Println("")
+	}
 
-	// 	// 2.10 Tuổi trung bình ở từng thành phố
-	// 	fmt.Println("_________ 2.10 Tuổi trung bình ở từng thành phố _________")
-	// 	AAPC := AverageAgePerCity(people)
-	// 	fmt.Println(AAPJ)
-	// 	for key, value := range AAPC {
-	// 		fmt.Printf("%s : %.2f", key, value)
-	// 		fmt.Println("")
-	// 	}
+	// 2.10 Tuổi trung bình ở từng thành phố
+	fmt.Println("_________ 2.10 Tuổi trung bình ở từng thành phố _________")
+	averageAgePerCity := AverageAgePerCity(people)
+	// fmt.Println(averageAgePerCity)
+	for key, value := range averageAgePerCity {
+		fmt.Printf("%s : %.2f", key, value)
+		fmt.Println("")
+	}
+
+	fmt.Println("__________________ 2.11 Male Femail in Each City __________________")
+	FemaleAndMaleEachCity1(people)
+	
+	fmt.Println("__________________ ______________ __________________")
+	ExampleWriter()
+}
+
+func ExampleWriter() {
+	w := bufio.NewWriter(os.Stdout)
+	fmt.Fprint(w, "Hello, ")
+	fmt.Fprint(w, "world!")
+	w.Flush() // Don't forget to flush!
+	// Output: Hello, world!
 }

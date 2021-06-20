@@ -5,6 +5,7 @@ import (
 	"strconv"
 	"strings"
 	"time"
+	"fmt"
 
 	"github.com/bearbin/go-age"
 )
@@ -123,8 +124,14 @@ func FiveCitiesHasTopAverageSalary(p []Person) (result []job) {
 	sort.Slice(result, func(i, j int) bool {
 		return result[i].Number > result[j].Number
 	})
-	result = result[0:5]
-	return result
+	temp := len(result)
+	if temp <= 5 {
+		return result
+	} else {
+		result = result[0:5]
+		return result
+	}
+	
 }
 
 // 2.8 Năm thành phố có mức lương trung bình của developer cao nhất
@@ -212,3 +219,83 @@ func AverageAgePerCity(p []Person) (result map[string]float64) {
 	}
 	return result
 }
+
+
+func FemaleAndMale(p []Person) (result float64) {
+	// result = make(map[string]int)
+	count := 0
+	total := 0
+	for _, product := range p {
+		if (product.Gender == "Female"){
+			count++
+		}
+		total++	
+	}
+
+	// result = count/total
+	fmt.Println(count)
+	fmt.Println(total)
+	result = float64(count) / float64(total)
+	return result
+}
+
+// func GroupPeopleByJob(p []Person) (result map[string]int) {
+// 	result = make(map[string]int)
+// 	for _, product := range p {
+// 		result[product.Job]++
+// 	}
+// 	return result
+// }
+
+func FemaleAndMaleEachCity(p []Person) []string {
+    var results []string
+    results = append(results, p[0].City)
+    for _, person := range p {
+        count := 0
+        for _, result := range results {
+            if person.City == result {
+                count++
+            }
+        }
+        if count == 0 {
+            results = append(results, person.City)
+        }
+    }
+    return results
+}
+
+type gender struct {
+	city 	string
+	Female	int
+	Male	int
+	tyle 	float64
+}
+
+func caculatorFemale(p []Person)(result map[string]int){
+	result = make(map[string]int)
+	for _, person := range p {
+		result[person.Gender]++
+	}
+	return result
+}
+
+func FemaleAndMaleEachCity1(p []Person)(result []gender){
+	cityPeople := make(map[string][]Person)
+	for _, person := range p {
+		cityPeople[person.City] = append(cityPeople[person.City], person)
+	}
+	
+	items := make(map[string]map[string]int)
+	for key, persons := range cityPeople {
+		items[key] = caculatorFemale(persons)
+	}
+	fmt.Println(items)
+	for city, itm := range items{
+		fmt.Println(itm["Female"])
+		result = append(result, gender{city:city, Female:itm["Female"], Male:itm["Male"], tyle:3})
+	}
+	fmt.Println(result)
+	return result
+	 
+}
+
