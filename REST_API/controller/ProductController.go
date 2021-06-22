@@ -104,7 +104,85 @@ func UpdateImageInProduct(c *fiber.Ctx) error{
 		})
 	}
 
-	err = repo.ProductRepo.UpdateProductRepo1(updatedProduct, int64(id))
+	err = repo.ProductRepo.UpdateImageInProductRepo(updatedProduct, int64(id))
+	if err != nil {
+		return c.Status(404).SendString(err.Error())
+	}
+
+	return c.SendString(fmt.Sprintf("Product with id = %d is successfully updated", int64(id)))
+}
+
+
+func DeleteEachImageInProduct(c *fiber.Ctx) error{
+	id, e := c.ParamsInt("id")
+	if e != nil {
+		return c.Status(400).SendString(e.Error())
+	}
+
+	updatedProduct := new(model.Product)
+	err := c.BodyParser(&updatedProduct)
+	// if error
+	if err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"success": false,
+			"message": "Cannot parse JSON",
+			"error":   err,
+		})
+	}
+
+	err = repo.ProductRepo.DeleteEachImageInProductRepo(updatedProduct, int64(id))
+	if err != nil {
+		return c.Status(404).SendString(err.Error())
+	}
+
+	return c.SendString(fmt.Sprintf("Product with id = %d is successfully delete image", int64(id)))
+}
+
+
+func UpdateReviewInProduct(c *fiber.Ctx) error{
+	id, e := c.ParamsInt("id")
+	if e != nil {
+		return c.Status(400).SendString(e.Error())
+	}
+
+	updatedProduct := new(model.Product)
+	err := c.BodyParser(&updatedProduct)
+	// if error
+	if err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"success": false,
+			"message": "Cannot parse JSON",
+			"error":   err,
+		})
+	}
+
+	err = repo.ProductRepo.UpdateReviewInProductRepo(updatedProduct, int64(id))
+	if err != nil {
+		return c.Status(404).SendString(err.Error())
+	}
+
+	return c.SendString(fmt.Sprintf("Product with id = %d is successfully updated", int64(id)))
+}
+
+
+func UpdatePriceStoreInProduct(c *fiber.Ctx) error{
+	id, e := c.ParamsInt("id")
+	if e != nil {
+		return c.Status(400).SendString(e.Error())
+	}
+
+	updatedProduct := new(model.Product)
+	err := c.BodyParser(&updatedProduct)
+	// if error
+	if err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"success": false,
+			"message": "Cannot parse JSON",
+			"error":   err,
+		})
+	}
+
+	err = repo.ProductRepo.UpdatePriceStoreInProductRepo(updatedProduct, int64(id))
 	if err != nil {
 		return c.Status(404).SendString(err.Error())
 	}

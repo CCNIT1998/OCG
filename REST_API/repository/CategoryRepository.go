@@ -9,7 +9,7 @@ import (
 
 type CategoryRepository struct {
 	categorys map[int64]*model.Category
-	autoID   int64
+	autoID    int64
 }
 
 var CategoryRepo CategoryRepository
@@ -22,22 +22,22 @@ func (r *CategoryRepository) getAutoID() int64 {
 func (r *CategoryRepository) InitData(connection string) {
 	fmt.Println("Connect to ", connection)
 	r.CreateNewCategoryRepo(&model.Category{
-		Id: 0,
+		Id:   0,
 		Name: "All",
 	})
 
 	r.CreateNewCategoryRepo(&model.Category{
-		Id: 1,
+		Id:   1,
 		Name: "Women",
 	})
 
 	r.CreateNewCategoryRepo(&model.Category{
-		Id: 2,
+		Id:   2,
 		Name: "Men",
 	})
 
 	r.CreateNewCategoryRepo(&model.Category{
-		Id: 3,
+		Id:   3,
 		Name: "Kids",
 	})
 }

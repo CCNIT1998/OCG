@@ -23,7 +23,26 @@ func ConfigProductRouter(router *fiber.Router) {
 	(*router).Patch("", controller.UpdateProduct) //UPDATE: Cập nhật một bản ghi
 	(*router).Delete("/:id", controller.DeleteProductById) //Xoá một bản ghi
 	(*router).Get("", controller.GetAllProduct) //Liệt kê
-	(*router).Patch("/:id", controller.UpdateImageInProduct) 
+	(*router).Patch("/image/:id", controller.UpdateImageInProduct) // update image
+	// data test UpdateImageInProduct
+	// {
+	// 	"id": 1,
+	// 	"image": [
+	// 		"/uploads/images/img1.jpg",
+	// 		"/uploads/images/img2.jpg",
+	// 		"/uploads/images/img3.jpg"
+	// 	]
+	// }
+	(*router).Patch("/delete/image/:id", controller.DeleteEachImageInProduct) // delete image
+	(*router).Patch("/review/:id", controller.UpdateReviewInProduct) // update review
+	(*router).Patch("/historyprice/:id", controller.UpdatePriceStoreInProduct) // update History price
+
+	// {
+	// 	"priceHistory": [
+	// 		"01/04/2021",
+	// 		"02/05/2021"
+	// 	]
+	// }
 }
 
 
